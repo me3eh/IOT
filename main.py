@@ -68,13 +68,15 @@ window = sg.Window('The Table Element', layout,
                    element_justification='c',
                    resizable=True, right_click_menu=sg.MENU_RIGHT_CLICK_EDITME_VER_EXIT, finalize=True)
 
+window.bind("<space>", "-SPACE-KEY-")
+window.force_focus()
 
 while True:
     event, values = window.read()
     print(event, values)
     if event == sg.WIN_CLOSED or event == '-EXIT-':
         break
-    if event == "-ADD-":
+    if event in ["-ADD-", "-SPACE-KEY-"]:
         index, measurement_number = new_measure(window, index=index, data=data, measurement_number=measurement_number)
 
 window.close()
